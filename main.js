@@ -11,8 +11,14 @@ app.get('/',function(req,res){
 })
 
 app.get('/test',function(req,res){
-	var myobj2 = { name: "Company Inc", address: "Highway 39" };
+	var myobj2 = { name: "google Inc", address: "road 39" };
 	sum.prototype.addData2(myobj2)
+})
+
+app.get('/update',function(req,res){
+    var query = { name: "google Inc"}
+	var myobj2 =  { $set: {name: "facebook", address: "Canyon 123" } };;
+	sum.prototype.update(query, myobj2)
 })
 
 app.get('/result',function(req,res){

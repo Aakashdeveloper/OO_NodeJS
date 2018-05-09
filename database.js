@@ -18,6 +18,7 @@ var addData = function(myobj){
   }); 
 }
 
+
 addData.prototype.addData2 = function(myobj){
   MongoClient.connect(url, function(err, db) {
     if (err) throw err;
@@ -28,6 +29,18 @@ addData.prototype.addData2 = function(myobj){
       db.close();
     });
   }); 
+}
+
+addData.prototype.update = function(query, myobj){
+  MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  var dbo = db.db("testData1");
+  dbo.collection("second").update(query, myobj, function(err, res) {
+    if (err) throw err;
+    console.log("1 document updated");
+    db.close();
+  });
+});
 }
  var outRes;
 addData.prototype.getData = function(colName, req,res){
