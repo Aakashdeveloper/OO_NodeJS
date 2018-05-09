@@ -1,9 +1,12 @@
 var mongodb = require('mongodb').MongoClient;
+var express  = require('express');
+var app = express();
+
+var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017/";
 
 
 var addData = function(myobj){
-  var MongoClient = require('mongodb').MongoClient;
-  var url = "mongodb://localhost:27017/";
   MongoClient.connect(url, function(err, db) {
     if (err) throw err;
     var dbo = db.db("testData1");
@@ -15,9 +18,7 @@ var addData = function(myobj){
   }); 
 }
 
-addData.prototype.addData2 = function(){
-  var MongoClient = require('mongodb').MongoClient;
-  var url = "mongodb://localhost:27017/";
+addData.prototype.addData2 = function(myobj){
   MongoClient.connect(url, function(err, db) {
     if (err) throw err;
     var dbo = db.db("testData1");
@@ -28,7 +29,19 @@ addData.prototype.addData2 = function(){
     });
   }); 
 }
-
+ var outRes;
+addData.prototype.getData = function(colName, req,res){
+ 
+  MongoClient.connect(url, function(err, db){
+    if(err) throw err;
+    var dbo = db.db("testData1")
+    dbo.collection(colName).find({}).toArray(
+        function(err,results){
+         outRes= results
+        })
+  })
+      console.log(outRes)
+      return outRes
+}
 
 module.exports = addData;
-
