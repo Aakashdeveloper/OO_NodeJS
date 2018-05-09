@@ -42,6 +42,21 @@ addData.prototype.update = function(query, myobj){
   });
 });
 }
+
+addData.prototype.delete = function(myquery){
+  MongoClient.connect(url, function(err,db){
+    if(err) throw err;
+    var dbo = db.db("testData1");
+    dbo.collection('second').deleteOne(myquery,function(err,res){
+      if(err) throw err;
+      console.log("data deleted");
+      db.close()
+    })
+  })
+}
+
+
+
  var outRes;
 addData.prototype.getData = function(colName, req,res){
  

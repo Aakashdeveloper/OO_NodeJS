@@ -17,7 +17,7 @@ app.get('/test',function(req,res){
 
 app.get('/update',function(req,res){
     var query = { name: "google Inc"}
-	var myobj2 =  { $set: {name: "facebook", address: "Canyon 123" } };;
+	var myobj2 =  { $set: {name: "facebook", address: "Canyon 123" } };
 	sum.prototype.update(query, myobj2)
 })
 
@@ -28,6 +28,11 @@ app.get('/result',function(req,res){
     res.send(out1)
     console.log("2nd out 111"+ JSON.stringify(out))
     //console.log("2nd out "+ out1)
+})
+
+app.get('/delete',function(req,res){
+    var myobj2 = { name: "google Inc"};
+    sum.prototype.delete(myobj2)
 })
 
 app.listen(port, function(err){
